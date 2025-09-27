@@ -38,10 +38,10 @@ public class MemberServiceTest {
         when(memberRepository.findByEmail(myEmail)).thenReturn(Optional.of(mockMember));
 
         //when
-        Member findMember = memberService.findByEmail(myEmail);
+        MemberResponseDto responseDto = memberService.findByEmail(myEmail);
 
         //then
-        Assertions.assertThat(findMember.getEmail()).isEqualTo(myEmail);
+        Assertions.assertThat(responseDto.getEmail()).isEqualTo(myEmail);
     }
 
     @Test

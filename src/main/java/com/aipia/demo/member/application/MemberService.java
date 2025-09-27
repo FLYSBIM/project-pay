@@ -7,6 +7,8 @@ import com.aipia.demo.member.dto.MemberResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class MemberService {
 
@@ -17,9 +19,15 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public Member findByEmail(final String email) {
-        return memberRepository.findByEmail(email)
-                .orElseThrow(() -> new IllegalArgumentException("해당 이메일의 회원을 찾을 수 없습니다."));
+    public MemberResponseDto findByEmail(final String email) {
+        Optional<Member> optionalMember = memberRepository.findByEmail(email);
+        if(optionalMember.isEmpty()) {
+            throw new IllegalArgumentException("해당 이메일의 회원을 찾을 수 없습니다.");
+        }
+
+        Member findMember = optionalMember.get();
+
+        return new MemberResponseDto(findMember);
     }
 
     public MemberResponseDto createMember(final MemberCreateRequestDto requestDto) {
