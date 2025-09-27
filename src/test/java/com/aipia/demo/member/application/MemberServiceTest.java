@@ -2,6 +2,7 @@ package com.aipia.demo.member.application;
 
 import com.aipia.demo.member.domain.Member;
 import com.aipia.demo.member.domain.MemberRepository;
+import com.aipia.demo.member.dto.MemberCreateRequestDto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -62,11 +63,12 @@ public class MemberServiceTest {
         String email = "aa@gmail.com";
         String password = "123";
         String name = "Joe";
+        MemberCreateRequestDto requestDto = new MemberCreateRequestDto(email, password, name);
 
         when(memberRepository.save(any(Member.class))).then(returnsFirstArg());
 
         //when
-        Member member = memberService.createMember(email, password, name);
+        Member member = memberService.createMember(requestDto);
 
         //then
         Assertions.assertThat(email).isEqualTo(member.getEmail());
@@ -83,11 +85,12 @@ public class MemberServiceTest {
         String existEmail = "aa@gmail.com";
         String password = "123";
         String name = "Joe";
+        MemberCreateRequestDto requestDto = new MemberCreateRequestDto(existEmail, password, name);
         when(memberRepository.findByEmail(existEmail)).thenReturn(Optional.of(Member.builder().build()));
 
         //when, then
         assertThrows(IllegalArgumentException.class, () -> {
-            memberService.createMember(existEmail, password, name);
+            memberService.createMember(requestDto);
         });
     }
 }
