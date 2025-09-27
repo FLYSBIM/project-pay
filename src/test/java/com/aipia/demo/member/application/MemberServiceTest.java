@@ -4,6 +4,8 @@ import com.aipia.demo.member.domain.Member;
 import com.aipia.demo.member.domain.MemberRepository;
 import com.aipia.demo.member.dto.MemberCreateRequestDto;
 import com.aipia.demo.member.dto.MemberResponseDto;
+import com.aipia.demo.member.exception.EmailAlreadyExistsException;
+import com.aipia.demo.member.exception.MemberNotFoundException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -52,7 +54,7 @@ public class MemberServiceTest {
         when(memberRepository.findByEmail(notExistEmail)).thenReturn(Optional.empty());
 
         //when then
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(MemberNotFoundException.class, () -> {
             memberService.findByEmail(notExistEmail);
         });
     }
@@ -89,7 +91,7 @@ public class MemberServiceTest {
         when(memberRepository.findByEmail(existEmail)).thenReturn(Optional.of(Member.builder().build()));
 
         //when, then
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(EmailAlreadyExistsException.class, () -> {
             memberService.createMember(requestDto);
         });
     }
