@@ -3,6 +3,7 @@ package com.aipia.demo.member.application;
 import com.aipia.demo.member.domain.Member;
 import com.aipia.demo.member.domain.MemberRepository;
 import com.aipia.demo.member.dto.MemberCreateRequestDto;
+import com.aipia.demo.member.dto.MemberResponseDto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -68,11 +69,10 @@ public class MemberServiceTest {
         when(memberRepository.save(any(Member.class))).then(returnsFirstArg());
 
         //when
-        Member member = memberService.createMember(requestDto);
+        MemberResponseDto member = memberService.createMember(requestDto);
 
         //then
         Assertions.assertThat(email).isEqualTo(member.getEmail());
-        Assertions.assertThat(password).isEqualTo(member.getPassword());
         Assertions.assertThat(name).isEqualTo(member.getName());
 
         verify(memberRepository).save(any(Member.class));
