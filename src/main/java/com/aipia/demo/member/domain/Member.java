@@ -1,6 +1,7 @@
 package com.aipia.demo.member.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "MEMBER")
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Member {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,11 +26,4 @@ public class Member {
 
     @Column(name = "MEMBER_NAME", nullable = false)
     private String name;
-
-    @Builder
-    public Member(String email, String password, String name) {
-        this.email = email;
-        this.password = password;
-        this.name = name;
-    }
 }
