@@ -1,6 +1,7 @@
 package com.aipia.demo.order.domain;
 
 import com.aipia.demo.member.domain.Member;
+import com.aipia.demo.order.exception.InvalidOrderStatusException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -101,7 +102,7 @@ public class OrderDomainTest {
         order.complete();
 
         // when & then
-        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
+        InvalidOrderStatusException exception = assertThrows(InvalidOrderStatusException.class, () -> {
             order.complete();
         });
 
@@ -119,7 +120,7 @@ public class OrderDomainTest {
         order.complete();
 
         // when & then
-        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
+        InvalidOrderStatusException exception = assertThrows(InvalidOrderStatusException.class, () -> {
             order.cancel();
         });
 

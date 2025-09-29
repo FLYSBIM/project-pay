@@ -1,6 +1,7 @@
 package com.aipia.demo.order.domain;
 
 import com.aipia.demo.member.domain.Member;
+import com.aipia.demo.order.exception.InvalidOrderStatusException;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,7 +34,7 @@ public class Order {
 
     public void cancel() {
         if (this.orderStatus == OrderStatus.COMPLETED) {
-            throw new IllegalStateException("이미 완료된 주문은 취소할 수 없습니다.");
+            throw new InvalidOrderStatusException("이미 완료된 주문은 취소할 수 없습니다.");
         }
 
         this.orderStatus = OrderStatus.CANCELED;
@@ -41,7 +42,7 @@ public class Order {
 
     public void complete() {
         if (this.orderStatus == OrderStatus.COMPLETED) {
-            throw new IllegalStateException("이미 완료된 주문입니다.");
+            throw new InvalidOrderStatusException("이미 완료된 주문입니다.");
         }
 
         this.orderStatus = OrderStatus.COMPLETED;
