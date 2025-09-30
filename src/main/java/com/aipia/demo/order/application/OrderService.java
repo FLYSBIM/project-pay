@@ -29,7 +29,7 @@ public class OrderService {
     public OrderResponseDto createOrder(OrderCreateRequestDto requestDto) {
 
         Long memberId = requestDto.getMemberId();
-        Integer price = tmpRandomPrice(); //임시 사용 가격생성 메서드
+        Long price = tmpRandomPrice(); //임시 사용 가격생성 메서드
 
         Optional<Member> optionalMember = memberRepository.findById(memberId);
 
@@ -54,7 +54,7 @@ public class OrderService {
         return new OrderResponseDto(optionalOrder.get());
     }
 
-    public Integer tmpRandomPrice(){
-        return (int) (Math.random() * 10000) + 1;
+    public Long tmpRandomPrice(){
+        return 5000L;
     }
 }
