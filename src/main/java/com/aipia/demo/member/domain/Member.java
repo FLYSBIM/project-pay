@@ -26,4 +26,14 @@ public class Member {
 
     @Column(name = "MEMBER_NAME", nullable = false)
     private String name;
+
+    @Column(name = "MEMBER_BALANCE")
+    private Long balance;
+
+    public void decreaseBalance(Long balance) {
+        if(balance > this.balance) {
+            throw new IllegalStateException("잔액이 부족합니다.");
+        }
+        this.balance -= balance;
+    }
 }

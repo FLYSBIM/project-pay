@@ -40,6 +40,7 @@ public class MemberService {
         Member member = Member.builder().email(requestDto.getEmail())
                 .password(requestDto.getPassword())
                 .name(requestDto.getName())
+                .balance(100000L)
                 .build();
 
         memberRepository.save(member);
