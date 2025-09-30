@@ -25,7 +25,7 @@ public class Order {
     private Member member;
 
     @Column(name = "ORDER_PRICE")
-    private Integer price;
+    private Long price;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "ORDER_STATUS", nullable = false)

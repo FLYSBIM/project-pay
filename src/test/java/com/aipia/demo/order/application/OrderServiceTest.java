@@ -64,7 +64,7 @@ public class OrderServiceTest {
         Long orderId = 1L;
         Long memberId = 1L;
         Member mockMember = Member.builder().id(memberId).name("testUser").build();
-        Order mockOrder = Order.builder().id(orderId).member(mockMember).price(10000).build();
+        Order mockOrder = Order.builder().id(orderId).member(mockMember).price(10000L).build();
 
         // orderRepository.findById(1L)이 호출되면, mockOrder를 담은 Optional을 반환하도록 설정
         when(orderRepository.findById(orderId)).thenReturn(Optional.of(mockOrder));

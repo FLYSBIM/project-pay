@@ -29,7 +29,7 @@ public class OrderDomainTest {
     @DisplayName("빌더를 통해 Order 클래스 생성 성공")
     void createOrder() {
         //given
-        int price = 10000;
+        Long price = 10000L;
 
         //when
         Order order = Order.builder()
@@ -47,7 +47,7 @@ public class OrderDomainTest {
     @DisplayName("Order 생성 시 OrderStatus는 ORDERED 상태여야 한다")
     void createOrder_DefaultStatus_isOrdered() {
         //given
-        int price = 10000;
+        Long price = 10000L;
 
         //when
         Order order = Order.builder()
@@ -65,7 +65,7 @@ public class OrderDomainTest {
         // given
         Order order = Order.builder()
                 .member(testMember)
-                .price(10000)
+                .price(10000L)
                 .build();
 
         // when
@@ -81,7 +81,7 @@ public class OrderDomainTest {
         // given
         Order order = Order.builder()
                 .member(testMember)
-                .price(10000)
+                .price(10000L)
                 .build();
 
         // when
@@ -97,7 +97,7 @@ public class OrderDomainTest {
         // given
         Order order = Order.builder()
                 .member(testMember)
-                .price(10000)
+                .price(10000L)
                 .build();
         order.complete();
 
@@ -115,7 +115,7 @@ public class OrderDomainTest {
         // given
         Order order = Order.builder()
                 .member(testMember)
-                .price(10000)
+                .price(10000L)
                 .build();
         order.complete();
 

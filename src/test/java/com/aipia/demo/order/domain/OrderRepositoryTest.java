@@ -23,7 +23,7 @@ public class OrderRepositoryTest {
         Member member = Member.builder().email("test@test.com").password("123").name("Joe").build();
         memberRepository.save(member);
 
-        Order order = Order.builder().member(member).price(10000).build();
+        Order order = Order.builder().member(member).price(10000L).build();
 
         // when
         Order savedOrder = orderRepository.save(order);

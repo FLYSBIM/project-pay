@@ -9,7 +9,7 @@ public class OrderResponseDto {
     private Long orderId;
     private Long memberId;
     private String memberName;
-    private Integer price;
+    private Long price;
 
     public OrderResponseDto(Order order) {
         this.orderId = order.getId();
